@@ -53,7 +53,9 @@ public class HelloApplication extends Application {
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
                 try {
-                    myWriter.write(" Home old: "+number +", home new: " +t1+" ");
+                    System.out.println("Promjena home vrijednosti");
+                    myWriter.write(" Home old: "+number +", home new: " +t1+" " + "Away: " +away.getValue());
+                    myWriter.write(System.getProperty("line.separator"));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -63,16 +65,20 @@ public class HelloApplication extends Application {
             @Override
             public void changed(ObservableValue<? extends Number> observableValue, Number number, Number t1) {
                 try {
-                    myWriter.write(" Away:" +number +", away new: " +t1);
+                    System.out.println("Promjena away vrijednosti");
+                    myWriter.write("Home: "+ home.getValue()+ " Away old:" +number +", away new: " +t1);
                     myWriter.write(System.getProperty("line.separator"));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         });
+        System.out.println("Pocinje utakmica");
         while(true){
             Random random = new Random();
+            System.out.println("Postavljanje home vrijednosti");
             home.setValue(random.nextInt(10));
+            System.out.println("Postavljanje home vrijednosti");
             away.setValue(random.nextInt(10));
         }
     }
